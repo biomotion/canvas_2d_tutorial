@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+          margin: 0;
+        }
+        canvas {
+          width: 100vw;
+          height: 100vh;
+          display: block;
+        }
+    </style>
+</head>
+
+<body onload="init()">
+    <canvas id="gameCanvas"></canvas>
+</body>
+
+<script>
+
+var ctx;
+var prev_time;
+
+function init(){
+
+    var canvas = document.getElementById("gameCanvas");
+    ctx = canvas.getContext("2d");
+
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    ctx.fillStyle="black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    console.log(`size = (${canvas.width}, ${canvas.height})`);
+    ctx.strokeStyle="red";
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 4, canvas.height / 4);
+    ctx.lineTo(canvas.width / 2, canvas.height / 2);
+    ctx.stroke();
+
+    document.addEventListener("keydown", keyDown);
+    document.addEventListener("keyup", keyUp);
+    setInterval(update, 1000/60);
+    prev_time = Date.now();
+}
+
+function update(){
+    var now = Date.now();
+    var diff = now - prev_time;
+    // console.log("fps = " + (1000 / (now - prev_time)));
+
+
+    prev_time = now;
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code/code_values
+function keyDown(event){
+    // console.log(`${event.key} down`);
+
+    switch(event.key){
+        case "o": // O
+            // console.log("O down");
+            break;
+        case "p": //P
+            // console.log("P down");
+            break;
+    }
+
+}
+
+function keyUp(event){
+    // console.log(`${event.key} up`);
+    switch(event.key){
+        case "o": // O
+            // console.log("O up");
+            break;
+        case "p": //P
+            // console.log("P up");
+            break;
+    }
+}
+
+</script>
+
+</html>
